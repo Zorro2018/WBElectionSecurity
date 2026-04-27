@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Vote Is Protected — West Bengal 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0b0b0b;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .poster {
+    width: 794px;
+    background: #0C1A2E;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top saffron stripe */
+  .stripe-top {
+    height: 10px;
+    background: linear-gradient(90deg, #FF6600, #FF9933, #FFB347);
+  }
+  .stripe-bottom {
+    height: 10px;
+    background: linear-gradient(90deg, #138808, #1a9e0a, #22b812);
+  }
+
+  /* Geometric background texture */
+  .bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,102,0,0.03) 0px,
+        rgba(255,102,0,0.03) 1px,
+        transparent 1px,
+        transparent 40px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 40px
+      );
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 0 0 2rem 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0C1A2E 0%, #112244 60%, #0C1A2E 100%);
+    border-bottom: 3px solid #FF6600;
+    padding: 2.5rem 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border: 40px solid rgba(255,102,0,0.07);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 220px; height: 220px;
+    border: 50px solid rgba(19,136,8,0.05);
+    border-radius: 50%;
+  }
+
+  .eci-badge {
+    display: inline-block;
+    background: rgba(255,102,0,0.15);
+    border: 1px solid rgba(255,102,0,0.5);
+    color: #FFB347;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .headline span {
+    color: #FF6600;
+  }
+
+  .subheadline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #a0b8d0;
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .tagline {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #6a8aaa;
+    letter-spacing: 0.5px;
+    margin-top: 0.3rem;
+  }
+
+  /* SHIELD STAT BANNER */
+  .shield-banner {
+    background: linear-gradient(135deg, #FF6600, #FF4500);
+    padding: 1.8rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .shield-icon {
+    flex-shrink: 0;
+  }
+
+  .shield-svg { width: 70px; height: 80px; }
+
+  .big-stat-block {
+    flex: 1;
+  }
+
+  .big-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .big-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-top: 2px;
+  }
+
+  .banner-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  /* MAIN STATS GRID */
+  .stats-section {
+    padding: 2rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FF6600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,102,0,0.3);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #FF6600;
+    padding: 1.2rem 1.4rem;
+    border-radius: 3px;
+  }
+
+  .stat-card.green-top { border-top-color: #22b812; }
+  .stat-card.blue-top { border-top-color: #3a8fe8; }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .stat-unit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FF9933;
+    margin-left: 2px;
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7a9ab8;
+    margin-top: 4px;
+  }
+
+  .stat-detail {
+    font-size: 11px;
+    color: #4a6a88;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* FORCE BREAKDOWN */
+  .forces-section {
+    padding: 0 3rem 2rem;
+  }
+
+  .forces-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .force-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.9rem 0.7rem;
+    text-align: center;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .force-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .force-card.crpf::before { background: #FF6600; }
+  .force-card.bsf::before  { background: #3a8fe8; }
+  .force-card.cisf::before { background: #22b812; }
+  .force-card.itbp::before { background: #FFB347; }
+  .force-card.ssb::before  { background: #c864e8; }
+
+  .force-abbr {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .force-companies {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FF9933;
+    margin: 2px 0;
+    line-height: 1;
+  }
+
+  .force-name {
+    font-size: 9px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #4a6a88;
+    line-height: 1.3;
+  }
+
+  /* PROTOCOLS */
+  .protocols-section {
+    padding: 0 3rem 2rem;
+  }
+
+  .protocols-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .protocol-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid #FF6600;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .protocol-item.green-left { border-left-color: #22b812; }
+  .protocol-item.blue-left  { border-left-color: #3a8fe8; }
+  .protocol-item.gold-left  { border-left-color: #FFB347; }
+
+  .protocol-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .protocol-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #d0e0f0;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .protocol-desc {
+    font-size: 11.5px;
+    color: #5a7a98;
+    line-height: 1.5;
+  }
+
+  /* TURNOUT CALLOUT */
+  .turnout-callout {
+    margin: 0 3rem 2rem;
+    background: linear-gradient(135deg, rgba(19,136,8,0.15), rgba(19,136,8,0.08));
+    border: 1px solid rgba(34,184,18,0.3);
+    border-left: 4px solid #22b812;
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .turnout-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 70px;
+    color: #22b812;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .turnout-text h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #8ad88a;
+    margin-bottom: 4px;
+  }
+
+  .turnout-text p {
+    font-size: 12px;
+    color: #4a7a4a;
+    line-height: 1.5;
+  }
+
+  /* EVM SECURITY */
+  .evm-section {
+    margin: 0 3rem 2rem;
+    background: rgba(58,143,232,0.08);
+    border: 1px solid rgba(58,143,232,0.2);
+    padding: 1.4rem 2rem;
+  }
+
+  .evm-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3a8fe8;
+    margin-bottom: 1rem;
+  }
+
+  .evm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .evm-item {
+    text-align: center;
+  }
+
+  .evm-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(58,143,232,0.15);
+    border: 1px solid rgba(58,143,232,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-size: 18px;
+  }
+
+  .evm-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #6aaae8;
+    margin-bottom: 3px;
+  }
+
+  .evm-detail {
+    font-size: 10.5px;
+    color: #3a5a7a;
+    line-height: 1.4;
+  }
+
+  /* BOTTOM CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #FF5500, #FF6600, #FF8800);
+    padding: 2.2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border: 35px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+
+  .cta-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+    position: relative;
+  }
+
+  .cta-sub {
+    font-family: 'Barlow Condensed', sans-length;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .source-line {
+    padding: 0.8rem 3rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .source-text {
+    font-size: 9px;
+    color: #2a4a68;
+    letter-spacing: 0.5px;
+  }
+
+  /* WATERMARK */
+  .phase-badge {
+    position: absolute;
+    top: 2.5rem;
+    right: 3rem;
+    text-align: right;
+  }
+
+  .phase-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,102,0,0.6);
+  }
+
+  .phase-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(255,102,0,0.12);
+    line-height: 1;
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; padding: 0; }
+    .poster { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="bg-pattern"></div>
+  <div class="stripe-top"></div>
+
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="phase-badge">
+        <div class="phase-text">WB Elections</div>
+        <div class="phase-num">2026</div>
+      </div>
+      <div class="eci-badge">Election Commission of India — Official Security Deployment</div>
+      <div class="headline">YOUR VOTE<br><span>IS PROTECTED</span></div>
+      <div class="subheadline">West Bengal Assembly Elections 2026</div>
+      <div class="tagline">Central Armed Police Forces are on the ground. Your right to vote is guaranteed.</div>
+    </div>
+
+    <!-- SHIELD BANNER -->
+    <div class="shield-banner">
+      <div class="shield-icon">
+        <svg class="shield-svg" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M35 4L8 16V38C8 55 20 68 35 74C50 68 62 55 62 38V16L35 4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+          <path d="M35 12L16 22V39C16 52 24 62 35 67C46 62 54 52 54 39V22L35 12Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <path d="M24 39L31 47L47 30" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="big-stat-block">
+        <div class="big-number">2,407</div>
+        <div class="big-label">CAPF Companies Deployed — Phase 1 Alone</div>
+      </div>
+      <div class="banner-divider"></div>
+      <div class="big-stat-block">
+        <div class="big-number">1.9<span style="font-size:32px">L</span></div>
+        <div class="big-label">Armed Personnel on the Ground</div>
+      </div>
+      <div class="banner-divider"></div>
+      <div class="big-stat-block">
+        <div class="big-number">44,378</div>
+        <div class="big-label">Polling Booths Under Central Guard</div>
+      </div>
+    </div>
+
+    <!-- KEY STATS GRID -->
+    <div class="stats-section">
+      <div class="section-label">Security at a Glance</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div><span class="stat-number">100</span><span class="stat-unit">%</span></div>
+          <div class="stat-label">Booth Webcasting</div>
+          <div class="stat-detail">Every single booth live-monitored. Camera placement verified for full EVM coverage with backup protocol for no-internet zones.</div>
+        </div>
+        <div class="stat-card green-top">
+          <div><span class="stat-number">480</span></div>
+          <div class="stat-label">Companies Pre-Deployed</div>
+          <div class="stat-detail">Union Home Ministry deployed forces from March 1 — weeks before polling — to establish ground presence and deter intimidation.</div>
+        </div>
+        <div class="stat-card blue-top">
+          <div><span class="stat-number">600<span class="stat-unit">+</span></span></div>
+          <div class="stat-label">General Observers</div>
+          <div class="stat-detail">ECI observers present during post-poll scrutiny of Form 17A at all 152 constituencies. No re-poll required after Phase 1.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORCE BREAKDOWN -->
+    <div class="forces-section">
+      <div class="section-label">Central Force Composition — Pre-Deployment Phase</div>
+      <div class="forces-grid">
+        <div class="force-card crpf">
+          <div class="force-abbr">CRPF</div>
+          <div class="force-companies">110</div>
+          <div class="force-name">Central Reserve<br>Police Force</div>
+        </div>
+        <div class="force-card bsf">
+          <div class="force-abbr">BSF</div>
+          <div class="force-companies">55</div>
+          <div class="force-name">Border Security<br>Force</div>
+        </div>
+        <div class="force-card cisf">
+          <div class="force-abbr">CISF</div>
+          <div class="force-companies">21</div>
+          <div class="force-name">Central Industrial<br>Security Force</div>
+        </div>
+        <div class="force-card itbp">
+          <div class="force-abbr">ITBP</div>
+          <div class="force-companies">27</div>
+          <div class="force-name">Indo-Tibetan<br>Border Police</div>
+        </div>
+        <div class="force-card ssb">
+          <div class="force-abbr">SSB</div>
+          <div class="force-companies">27</div>
+          <div class="force-name">Sashastra Seema<br>Bal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECI PROTOCOLS -->
+    <div class="protocols-section">
+      <div class="section-label">ECI Security Protocols in Force</div>
+      <div class="protocols-grid">
+        <div class="protocol-item">
+          <div class="protocol-icon">📡</div>
+          <div>
+            <div class="protocol-title">100% Live Webcasting</div>
+            <div class="protocol-desc">Every polling station livestreamed to district control rooms. Generators and offline backup protocols ensure no booth goes dark.</div>
+          </div>
+        </div>
+        <div class="protocol-item green-left">
+          <div class="protocol-icon">🔒</div>
+          <div>
+            <div class="protocol-title">EVM Double-Lock System</div>
+            <div class="protocol-desc">Strong rooms secured with double-lock mechanisms, two-tier 24/7 armed security, and full CCTV coverage of all corridors.</div>
+          </div>
+        </div>
+        <div class="protocol-item blue-left">
+          <div class="protocol-icon">👁</div>
+          <div>
+            <div class="protocol-title">Micro Observers & Monitors</div>
+            <div class="protocol-desc">Sensitive booths assigned dedicated micro-observers. ECI-deployed central observers have override authority over state forces.</div>
+          </div>
+        </div>
+        <div class="protocol-item gold-left">
+          <div class="protocol-icon">📋</div>
+          <div>
+            <div class="protocol-title">Post-Poll Scrutiny</div>
+            <div class="protocol-desc">All Form 17A voter registers and poll-day documents scrutinised the very next day. Candidates and agents present throughout the process.</div>
+          </div>
+        </div>
+        <div class="protocol-item">
+          <div class="protocol-icon">🎥</div>
+          <div>
+            <div class="protocol-title">Strong Room CCTV</div>
+            <div class="protocol-desc">DEOs and ROs make mandatory daily inspections of strong rooms. Sealed in presence of general observers and candidate representatives.</div>
+          </div>
+        </div>
+        <div class="protocol-item green-left">
+          <div class="protocol-icon">🛡</div>
+          <div>
+            <div class="protocol-title">Sensitive District Saturation</div>
+            <div class="protocol-desc">Murshidabad: 240 companies. Purba Medinipur: 271 companies. Paschim Medinipur: 273 companies. Maximum force in maximum-risk zones.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TURNOUT PROOF -->
+    <div class="turnout-callout">
+      <div class="turnout-number">92.35%</div>
+      <div class="turnout-text">
+        <h3>Phase 1 Turnout — Highest Since Independence</h3>
+        <p>Despite attempts at intimidation, 3.6 crore voters in 152 constituencies stepped out and voted on April 23, 2026 — delivering the highest recorded turnout in West Bengal's post-independence history. The presence of central forces worked. Your vote counts. The next phase is yours to claim.</p>
+      </div>
+    </div>
+
+    <!-- EVM SECURITY ROW -->
+    <div class="evm-section">
+      <div class="evm-title">EVM & VVPAT Integrity Safeguards</div>
+      <div class="evm-grid">
+        <div class="evm-item">
+          <div class="evm-icon-circle">🔐</div>
+          <div class="evm-label">Double-Lock Sealing</div>
+          <div class="evm-detail">Strong rooms sealed in presence of observers and candidates immediately after polling ends</div>
+        </div>
+        <div class="evm-item">
+          <div class="evm-icon-circle">📹</div>
+          <div class="evm-label">24/7 CCTV Cover</div>
+          <div class="evm-detail">Continuous surveillance of all EVM storage rooms with mandatory daily inspections by DEOs</div>
+        </div>
+        <div class="evm-item">
+          <div class="evm-icon-circle">✅</div>
+          <div class="evm-label">Zero Re-Poll Phase 1</div>
+          <div class="evm-detail">Post-poll scrutiny of all 44,376 booths found no grounds for re-polling — clean election</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-text">STEP OUT. CAST YOUR VOTE.<br>BENGAL IS WATCHING.</div>
+      <div class="cta-sub">Your ballot is your voice. Central forces are there. Do not be silenced.</div>
+    </div>
+
+    <div class="source-line">
+      <div class="source-text">Sources: Election Commission of India (PIB) · DD News · The Week · Home Ministry Deployment Orders</div>
+      <div class="source-text">West Bengal Assembly Elections 2026 · All data official / verified</div>
+    </div>
+
+    <div style="padding: 0.6rem 3rem 1rem; display: flex; justify-content: flex-end; align-items: center; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
+      <div style="width: 1px; height: 16px; background: rgba(255,102,0,0.4);"></div>
+      <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,102,0,0.5);">Created by</div>
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: rgba(255,102,0,0.75);">Z0rr0ViKtR</div>
+    </div>
+
+  </div>
+  <div class="stripe-bottom"></div>
+</div>
+</body>
+</html>
